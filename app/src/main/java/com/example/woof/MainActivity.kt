@@ -16,6 +16,7 @@
 
 package com.example.woof
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,6 +24,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,12 +32,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,21 +42,23 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.woof.data.getIdResource
 import com.example.woof.data.Pilot
 import com.example.woof.data.pilots
 import com.example.woof.ui.theme.WoofTheme
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             WoofTheme {
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    WoofApp()
+                    PilotApp()
                 }
             }
         }
@@ -70,33 +69,49 @@ class MainActivity : ComponentActivity() {
 
 
 
-/**
- * Composable that displays an app bar and a list of dogs.
- */
+
 @Composable
-fun WoofApp() {
+fun PilotApp() {
+    val contexto = LocalContext.current
     Scaffold(
         topBar = {
-            WoofTopAppBar()
+            PilotTopAppBar()
         }
-    ) { it ->
-        LazyColumn(contentPadding = it) {
-            items(pilots) {
-                PilotItem(
-                    pilot = it,
-                    modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
-                )
+    )
+     { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+        ) {
+            LazyColumn(
+                modifier = Modifier.weight(1f),
+                contentPadding = PaddingValues(vertical = 8.dp)
+            ) {
+                items(pilots) {
+                    PilotItem(
+                        pilot = it,
+                        modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
+                    )
+                }
+            }
+
+            Button(
+                onClick = {
+                    val intent = Intent(contexto, AddPilotActivity::class.java)
+                    contexto.startActivity(intent)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text("ADD NEW PILOT")
             }
         }
     }
 }
 
-/**
- * Composable that displays a list item containing a dog icon and their information.
- *
- * @param dog contains the data that populates the list item
- * @param modifier modifiers to set to this composable
- */
+
 @Composable
 fun PilotItem(
     pilot : Pilot,
@@ -116,13 +131,8 @@ fun PilotItem(
     }
 }
 
-/**
- * Composable that displays a Top Bar with an icon and text.
- *
- * @param modifier modifiers to set to this composable
- */
 @Composable
-fun WoofTopAppBar(modifier: Modifier = Modifier) {
+fun PilotTopAppBar(modifier: Modifier = Modifier) {
     CenterAlignedTopAppBar(
         title = {
             Row(
@@ -130,20 +140,11 @@ fun WoofTopAppBar(modifier: Modifier = Modifier) {
             ) {
                 Image(
                     modifier = Modifier
-                        .size(dimensionResource(R.dimen.image_size))
-                        .padding(dimensionResource(R.dimen.padding_small)),
-                    painter = painterResource(R.drawable.ic_woof_logo),
-
-                    // Content Description is not needed here - image is decorative, and setting a
-                    // null content description allows accessibility services to skip this element
-                    // during navigation.
-
-                    contentDescription = null
+                        .size(dimensionResource(R.dimen.image_size)),
+                    painter = painterResource(R.drawable.f1),
+                    contentDescription = "aqui tendras el listado de pilotos"
                 )
-                Text(
-                    text = stringResource(R.string.app_name),
-                    style = MaterialTheme.typography.displayLarge
-                )
+
             }
         },
         modifier = modifier
@@ -167,13 +168,7 @@ fun PilotIcon(
     )
 }
 
-/**
- * Composable that displays a dog's name and age.
- *
- * @param dogName is the resource ID for the string of the dog's name
- * @param dogAge is the Int that represents the dog's age
- * @param modifier modifiers to set to this composable
- */
+
 @Composable
 fun PilotInformation(
     @StringRes pilotName: Int,
@@ -187,30 +182,24 @@ fun PilotInformation(
             modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small))
         )
         Text(
-            text = stringResource(R.string.team, pilotTeam),
+            text = stringResource(R.string.team,stringResource(pilotTeam)),
             style = MaterialTheme.typography.bodyLarge
         )
     }
 }
 
-/**
- * Composable that displays what the UI of the app looks like in light theme in the design tab.
- */
 @Preview
 @Composable
 fun WoofPreview() {
     WoofTheme(darkTheme = false) {
-        WoofApp()
+        PilotApp()
     }
 }
 
-/**
- * Composable that displays what the UI of the app looks like in dark theme in the design tab.
- */
 @Preview
 @Composable
 fun WoofDarkThemePreview() {
     WoofTheme(darkTheme = true) {
-        WoofApp()
+        PilotApp()
     }
 }

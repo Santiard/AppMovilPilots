@@ -43,8 +43,13 @@ fun createPilot (name: String, team: String, context: Context ): Pilot {
     return newPilot
 }
 
+fun addPilot (pilot : Pilot, pilots : MutableList<Pilot>){
 
-var pilots = listOf(
+    pilots.add(pilot);
+
+}
+
+var pilots = mutableListOf(
 
     Pilot(R.drawable.max,R.string.pilot_name1,R.string.redbull),
     Pilot(R.drawable.yuki,R.string.pilot_name2,R.string.redbull),

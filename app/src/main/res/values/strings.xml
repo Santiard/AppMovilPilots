@@ -36,10 +36,12 @@
     <string name="about">About:</string>
     <string name="years_old">%d years old</string>
     <string name="expand_button_content_description">See more or less information about a dog.</string>
-
+    <string name="namenew">New pilot name here:</string>
+    <string name="teamnew">Team here:</string>
+    <string name="addPilot">Click here to add:</string>
 
     <string name="name">Pilot Name:</string>
-    <string name="team">Team:</string>
+    <string name="team">Team: %1$s</string>
     <string name="pilot_name1">Max Verstappen</string>
     <string name="pilot_name2">Yuki Tsunoda</string>
     <string name="pilot_name3">Lewis Hamilton</string>
