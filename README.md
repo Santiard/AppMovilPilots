@@ -1,7 +1,7 @@
-Woof App
+PILOTS F1 APP
 ==================================
 
-The Woof app is a list of dog photos with information about them including their name, age, and favorite activity. This app also uses Material Design to create a beautiful app experience for the user.
+The app works by showing the list of active F1 drivers for the 2025 season with the team they belong to and allows you to add a new driver to the list. This app also uses Material Design to create a beautiful app experience for the user.
 
 Introduction
 ------------
