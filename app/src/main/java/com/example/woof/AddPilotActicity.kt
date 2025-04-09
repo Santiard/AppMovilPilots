@@ -113,6 +113,7 @@ fun AddPilotScreen(modifier: Modifier = Modifier) {
     showBackground = true,
     showSystemUi = true,
     device = "spec:width=411dp,height=891dp,dpi=420"
+
 )
 @Composable
 fun AddPilotScreenPreview() {
