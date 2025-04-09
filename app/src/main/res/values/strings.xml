@@ -1,0 +1,76 @@
+<!--
+  ~ Copyright (C) 2023 The Android Open Source Project.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <string name="app_name">Woof</string>
+    <string name="dog_name_1">Koda</string>
+    <string name="dog_name_2">Lola</string>
+    <string name="dog_name_3">Frankie</string>
+    <string name="dog_name_4">Nox</string>
+    <string name="dog_name_5">Faye</string>
+    <string name="dog_name_6">Bella</string>
+    <string name="dog_name_7">Moana</string>
+    <string name="dog_name_8">Tzeitel</string>
+    <string name="dog_name_9">Leroy</string>
+    <string name="dog_description_1">Eating treats on the terrace</string>
+    <string name="dog_description_2">Barking at Daddy</string>
+    <string name="dog_description_3">Stealing socks</string>
+    <string name="dog_description_4">Meeting new animals</string>
+    <string name="dog_description_5">Digging in the garden</string>
+    <string name="dog_description_6">Chasing sea foam</string>
+    <string name="dog_description_7">Bothering her paw-rents</string>
+    <string name="dog_description_8">Sunbathing</string>
+    <string name="dog_description_9">Sleeping in dangerous places</string>
+    <string name="about">About:</string>
+    <string name="years_old">%d years old</string>
+    <string name="expand_button_content_description">See more or less information about a dog.</string>
+
+
+    <string name="name">Pilot Name:</string>
+    <string name="team">Team:</string>
+    <string name="pilot_name1">Max Verstappen</string>
+    <string name="pilot_name2">Yuki Tsunoda</string>
+    <string name="pilot_name3">Lewis Hamilton</string>
+    <string name="pilot_name4">Charles Leclerc</string>
+    <string name="pilot_name5">Lando Norris</string>
+    <string name="pilot_name6"> Oscar Piastri</string>
+    <string name="pilot_name7">George Russell</string>
+    <string name="pilot_name8">Kimi Antonelli</string>
+    <string name="pilot_name9">Fernando Alonso</string>
+    <string name="pilot_name10">Lance Stroll</string>
+    <string name="pilot_name11">Liam Lawson</string>
+    <string name="pilot_name12">Isack Hadjar</string>
+    <string name="pilot_name13">Oliver Bearman</string>
+    <string name="pilot_name14">Esteban Ocon</string>
+    <string name="pilot_name15">Alexander Albon</string>
+    <string name="pilot_name16">Carlos Sainz</string>
+    <string name="pilot_name17">Pierre Gasly</string>
+    <string name="pilot_name18">Jack Doohan</string>
+    <string name="pilot_name19">Nico Hülkenberg</string>
+    <string name="pilot_name20">Gabriel Bortoleto</string>
+    <string name="pilot_name21"></string>
+    <string name="redbull">Red Bull</string>
+    <string name="ferrari">Ferrari</string>
+    <string name="mclaren">McLaren</string>
+    <string name="mercedes">Mercedes</string>
+    <string name="astonmartin">Aston Martin</string>
+    <string name="racingbulls">Racing Bulls</string>
+    <string name="haas">Haas</string>
+    <string name="williams">Williams</string>
+    <string name="alpine">Alpine</string>
+    <string name="sauber">Sauber</string>
+    <string name="newTeam"></string>
+
+</resources>
