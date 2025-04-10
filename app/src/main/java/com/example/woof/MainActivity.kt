@@ -18,8 +18,12 @@ package com.example.woof
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -37,6 +41,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.LightMode
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,13 +56,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.woof.data.Pilot
-import com.example.woof.data.pilots
 import com.example.woof.ui.theme.WoofTheme
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import com.example.woof.data.PilotViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private val pilotViewModel: PilotViewModel by viewModels()
+    private val addPilotLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        // No necesitamos un resultado específico aquí, la adición se maneja en el ViewModel
+        // El simple hecho de volver a la actividad hará que se observe de nuevo el StateFlow
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -66,7 +77,7 @@ class MainActivity : ComponentActivity() {
                 Surface(
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    PilotApp()
+                    PilotApp(pilotViewModel,addPilotLauncher)
                 }
             }
         }
@@ -79,18 +90,15 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun PilotApp() {
+fun PilotApp(viewModel: PilotViewModel, addPilotLauncher: ActivityResultLauncher<Intent>) {
     val context = LocalContext.current
-    var isDarkTheme by rememberSaveable { mutableStateOf(false) } // store theme state
+    val pilots: List<Pilot> by viewModel.pilots.collectAsState()
+    Log.d("PilotApp", "Lista de pilotos en MainActivity actualizada. Tamaño: ${pilots.size}")
 
-    WoofTheme(darkTheme = isDarkTheme) {
+
+    WoofTheme() {
         Scaffold(
-            topBar = {
-                PilotTopAppBar(
-                    isDarkTheme = isDarkTheme,
-                    onToggleTheme = { isDarkTheme = !isDarkTheme }
-                )
-            }
+            topBar = { PilotTopAppBar() }
         ) { innerPadding ->
             Column(
                 modifier = Modifier
@@ -102,23 +110,19 @@ fun PilotApp() {
                     contentPadding = PaddingValues(vertical = 8.dp)
                 ) {
                     items(pilots) {
-                        PilotItem(
-                            pilot = it,
-                            modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
-                        )
+                        PilotItem(pilot = it, modifier = Modifier.padding(dimensionResource(R.dimen.padding_small)))
                     }
                 }
-
                 Button(
                     onClick = {
                         val intent = Intent(context, AddPilotActivity::class.java)
-                        context.startActivity(intent)
+                        addPilotLauncher.launch(intent)
                     },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
                 ) {
-                    Text("Añadir Nuevo Piloto")
+                    Text("Add new pilot")
                 }
             }
         }
@@ -142,14 +146,13 @@ fun PilotItem(
         ) {
             PilotIcon(pilot.imageResourceId)
             PilotInformation(pilot.name, pilot.team)
+
         }
     }
 }
 
 @Composable
 fun PilotTopAppBar(
-    isDarkTheme: Boolean,
-    onToggleTheme: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     CenterAlignedTopAppBar(
@@ -165,14 +168,7 @@ fun PilotTopAppBar(
                 )
             }
         },
-        actions = {
-            IconButton(onClick = onToggleTheme) {
-                Icon(
-                    imageVector = if (isDarkTheme) Icons.Default.LightMode else Icons.Default.DarkMode,
-                    contentDescription = if (isDarkTheme) "Modo claro" else "Modo oscuro"
-                )
-            }
-        },
+
         modifier = modifier
     )
 }
@@ -198,35 +194,31 @@ fun PilotIcon(
 
 @Composable
 fun PilotInformation(
-    @StringRes pilotName: Int,
-    @StringRes pilotTeam: Int,
+    name: Any,
+    team: Any,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         Text(
-            text = stringResource(pilotName),
+            text = when (name) {
+                is Int -> stringResource(name)
+                is String -> name
+                else -> ""
+            },
             style = MaterialTheme.typography.displayMedium,
             modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small))
         )
         Text(
-            text = stringResource(R.string.team,stringResource(pilotTeam)),
+            text = stringResource(R.string.team,
+                when (team) {
+                    is Int -> stringResource(team)
+                    is String -> team
+                    else -> ""
+                }
+            ),
             style = MaterialTheme.typography.bodyLarge
         )
     }
 }
 
-@Preview
-@Composable
-fun WoofPreview() {
-    WoofTheme(darkTheme = false) {
-        PilotApp()
-    }
-}
 
-@Preview
-@Composable
-fun WoofDarkThemePreview() {
-    WoofTheme(darkTheme = true) {
-        PilotApp()
-    }
-}

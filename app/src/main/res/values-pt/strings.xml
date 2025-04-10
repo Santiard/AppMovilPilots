@@ -1,26 +1,5 @@
 <resources>
     <string name="app_name">F1 UDES</string>
-    <string name="dog_name_1">Koda</string>
-    <string name="dog_name_2">Lola</string>
-    <string name="dog_name_3">Frankie</string>
-    <string name="dog_name_4">Nox</string>
-    <string name="dog_name_5">Faye</string>
-    <string name="dog_name_6">Bella</string>
-    <string name="dog_name_7">Moana</string>
-    <string name="dog_name_8">Tzeitel</string>
-    <string name="dog_name_9">Leroy</string>
-    <string name="dog_description_1">Comendo petiscos no terraço</string>
-    <string name="dog_description_2">Latindo para o papai</string>
-    <string name="dog_description_3">Roubando meias</string>
-    <string name="dog_description_4">Conhecendo novos animais</string>
-    <string name="dog_description_5">Cavando no jardim</string>
-    <string name="dog_description_6">Perseguindo espuma do mar</string>
-    <string name="dog_description_7">Incomodando seus pais humanos</string>
-    <string name="dog_description_8">Tomando sol</string>
-    <string name="dog_description_9">Dormindo em lugares perigosos</string>
-    <string name="about">Sobre:</string>
-    <string name="years_old">%d anos</string>
-    <string name="expand_button_content_description">Veja mais ou menos informações sobre um cachorro.</string>
     <string name="namenew">Nome do novo piloto aqui:</string>
     <string name="teamnew">Equipe aqui:</string>
     <string name="addPilot">Clique aqui para adicionar:</string>
@@ -58,6 +37,8 @@
     <string name="alpine">Alpine</string>
     <string name="sauber">Sauber</string>
     <string name="newTeam"></string>
+    <string name="default_name">no_name</string>
+    <string name="default_team">no team</string>
 </resources>
 
 
