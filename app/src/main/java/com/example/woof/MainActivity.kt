@@ -34,6 +34,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DarkMode
+import androidx.compose.material.icons.filled.LightMode
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -72,44 +80,51 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun PilotApp() {
-    val contexto = LocalContext.current
-    Scaffold(
-        topBar = {
-            PilotTopAppBar()
-        }
-    )
-     { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-        ) {
-            LazyColumn(
-                modifier = Modifier.weight(1f),
-                contentPadding = PaddingValues(vertical = 8.dp)
-            ) {
-                items(pilots) {
-                    PilotItem(
-                        pilot = it,
-                        modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
-                    )
-                }
-            }
+    val context = LocalContext.current
+    var isDarkTheme by rememberSaveable { mutableStateOf(false) } // store theme state
 
-            Button(
-                onClick = {
-                    val intent = Intent(contexto, AddPilotActivity::class.java)
-                    contexto.startActivity(intent)
-                },
+    WoofTheme(darkTheme = isDarkTheme) {
+        Scaffold(
+            topBar = {
+                PilotTopAppBar(
+                    isDarkTheme = isDarkTheme,
+                    onToggleTheme = { isDarkTheme = !isDarkTheme }
+                )
+            }
+        ) { innerPadding ->
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
+                    .fillMaxSize()
+                    .padding(innerPadding)
             ) {
-                Text("ADD NEW PILOT")
+                LazyColumn(
+                    modifier = Modifier.weight(1f),
+                    contentPadding = PaddingValues(vertical = 8.dp)
+                ) {
+                    items(pilots) {
+                        PilotItem(
+                            pilot = it,
+                            modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
+                        )
+                    }
+                }
+
+                Button(
+                    onClick = {
+                        val intent = Intent(context, AddPilotActivity::class.java)
+                        context.startActivity(intent)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ) {
+                    Text("Añadir Nuevo Piloto")
+                }
             }
         }
     }
 }
+
 
 
 @Composable
@@ -132,7 +147,11 @@ fun PilotItem(
 }
 
 @Composable
-fun PilotTopAppBar(modifier: Modifier = Modifier) {
+fun PilotTopAppBar(
+    isDarkTheme: Boolean,
+    onToggleTheme: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     CenterAlignedTopAppBar(
         title = {
             Row(
@@ -142,14 +161,22 @@ fun PilotTopAppBar(modifier: Modifier = Modifier) {
                     modifier = Modifier
                         .size(dimensionResource(R.dimen.image_size)),
                     painter = painterResource(R.drawable.f1),
-                    contentDescription = "aqui tendras el listado de pilotos"
+                    contentDescription = "Listado de Pilotos"
                 )
-
+            }
+        },
+        actions = {
+            IconButton(onClick = onToggleTheme) {
+                Icon(
+                    imageVector = if (isDarkTheme) Icons.Default.LightMode else Icons.Default.DarkMode,
+                    contentDescription = if (isDarkTheme) "Modo claro" else "Modo oscuro"
+                )
             }
         },
         modifier = modifier
     )
 }
+
 
 
 @Composable

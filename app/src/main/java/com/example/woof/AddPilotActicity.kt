@@ -60,7 +60,7 @@ fun AddPilotScreen(modifier: Modifier = Modifier) {
 
     Scaffold(
         topBar = {
-            PilotTopAppBar()
+            PilotTopAppBar(isDarkTheme = false, onToggleTheme = {})
         }
     ) { innerPadding ->
         Column(

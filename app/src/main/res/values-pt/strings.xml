@@ -1,18 +1,3 @@
-<!--
-  ~ Copyright (C) 2023 The Android Open Source Project.
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     https://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
 <resources>
     <string name="app_name">F1 UDES</string>
     <string name="dog_name_1">Koda</string>
@@ -24,30 +9,29 @@
     <string name="dog_name_7">Moana</string>
     <string name="dog_name_8">Tzeitel</string>
     <string name="dog_name_9">Leroy</string>
-    <string name="dog_description_1">Eating treats on the terrace</string>
-    <string name="dog_description_2">Barking at Daddy</string>
-    <string name="dog_description_3">Stealing socks</string>
-    <string name="dog_description_4">Meeting new animals</string>
-    <string name="dog_description_5">Digging in the garden</string>
-    <string name="dog_description_6">Chasing sea foam</string>
-    <string name="dog_description_7">Bothering her paw-rents</string>
-    <string name="dog_description_8">Sunbathing</string>
-    <string name="dog_description_9">Sleeping in dangerous places</string>
-    <string name="about">About:</string>
-    <string name="years_old">%d years old</string>
-    <string name="expand_button_content_description">See more or less information about a dog.</string>
-    <string name="namenew">New pilot name here:</string>
-    <string name="teamnew">Team here:</string>
-    <string name="addPilot">Click here to add:</string>
-
-    <string name="name">Pilot Name:</string>
-    <string name="team">Team: %1$s</string>
+    <string name="dog_description_1">Comendo petiscos no terraço</string>
+    <string name="dog_description_2">Latindo para o papai</string>
+    <string name="dog_description_3">Roubando meias</string>
+    <string name="dog_description_4">Conhecendo novos animais</string>
+    <string name="dog_description_5">Cavando no jardim</string>
+    <string name="dog_description_6">Perseguindo espuma do mar</string>
+    <string name="dog_description_7">Incomodando seus pais humanos</string>
+    <string name="dog_description_8">Tomando sol</string>
+    <string name="dog_description_9">Dormindo em lugares perigosos</string>
+    <string name="about">Sobre:</string>
+    <string name="years_old">%d anos</string>
+    <string name="expand_button_content_description">Veja mais ou menos informações sobre um cachorro.</string>
+    <string name="namenew">Nome do novo piloto aqui:</string>
+    <string name="teamnew">Equipe aqui:</string>
+    <string name="addPilot">Clique aqui para adicionar:</string>
+    <string name="name">Nome do piloto:</string>
+    <string name="team">Equipe: %1$s</string>
     <string name="pilot_name1">Max Verstappen</string>
     <string name="pilot_name2">Yuki Tsunoda</string>
     <string name="pilot_name3">Lewis Hamilton</string>
     <string name="pilot_name4">Charles Leclerc</string>
     <string name="pilot_name5">Lando Norris</string>
-    <string name="pilot_name6"> Oscar Piastri</string>
+    <string name="pilot_name6">Oscar Piastri</string>
     <string name="pilot_name7">George Russell</string>
     <string name="pilot_name8">Kimi Antonelli</string>
     <string name="pilot_name9">Fernando Alonso</string>
@@ -74,5 +58,6 @@
     <string name="alpine">Alpine</string>
     <string name="sauber">Sauber</string>
     <string name="newTeam"></string>
-
 </resources>
+
+
